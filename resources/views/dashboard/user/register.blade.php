@@ -17,7 +17,7 @@
             <div class="col-md-4 off">
                 <h1> User Register</h1>
                   <div class="form-control">
-                      <form action="{{ route('user.create') }}" method="POST">
+                      <form action="{{ route('create') }}" method="POST">
                         @if (Session::get('success'))
                         <div class="alert-success">
                             {{Session::get('success')}}
@@ -54,7 +54,7 @@
                             </div><br>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">Register</button>
-                                <a href="{{ route('user.login') }}" class="ml-4 text-sm text-gray-700 underline">I already have an account</a>
+                                <a href="{{ route('login') }}" class="ml-4 text-sm text-gray-700 underline">I already have an account</a>
                             </div>
                       </form>
                   </div>

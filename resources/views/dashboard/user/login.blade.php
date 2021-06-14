@@ -17,7 +17,7 @@
             <div class="col-md-4 off">
                 <h1> User Login</h1>
                   <div class="form-control">
-                      <form action="{{ route('user.check') }}" method="POST">
+                      <form action="{{ route('check') }}" method="POST">
                         @if (Session::get('fail'))
                         <div class="alert alert-danger">
                             {{ Session::get('fail') }}
@@ -38,7 +38,7 @@
                             <button type="submit" class="btn btn-primary">Login</button>
                         </div>
                         <br>
-                                <a href="{{ route('user.register') }}" class="ml-4 text-sm text-gray-700 underline">Create an account</a>
+                                <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Create an account</a>
                     
                       </form>
                   </div>

@@ -6,13 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>User Dashboard | Home</title>
     <link rel="stylesheet" href="{{ asset('bootstrap.min.css') }}">
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 
     <div class="container">
         <div class="row">
             <div class="col-md-6 offset-md-3" style="margin-top: 45px">
-                 <h4>user Dashboard</h4><hr>
+                 <h1>{{ strtoupper(Auth::guard('web')->user()->role) }} Dashboard</h1><br>
+                 <a href="{{ route('home',['domain' => Auth::guard('web')->user()->role]) }}">Dashboard</a>|
+                 <a href="{{ route('member',['domain' => Auth::guard('web')->user()->role]) }}">Memeber</a>|
+                 <a href="{{ route('support',['domain' => Auth::guard('web')->user()->role]) }}">Support</a>
+                 @if (Auth::guard('web')->user()->role=='admin')
+                 |<a href="{{ route('system',['domain' => Auth::guard('web')->user()->role]) }}">System</a>
+                 @endif
+                 
+                 <hr>
                  <table class="table table-striped table-inverse table-responsive">
                      <thead class="thead-inverse">
                          <tr>
@@ -26,8 +36,8 @@
                                  <td>{{ Auth::guard('web')->user()->name }}</td>
                                  <td>{{ Auth::guard('web')->user()->email }}</td>
                                  <td>
-                                     <a href="{{ route('user.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
-                                     <form action="{{ route('user.logout') }}" method="post" class="d-none" id="logout-form">@csrf</form>
+                                     <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
+                                     <form action="{{ route('logout') }}" method="post" class="d-none" id="logout-form">@csrf</form>
                                  </td>
                              </tr>
                          </tbody>
@@ -37,4 +47,7 @@
     </div>
     
 </body>
+
+
+<script src="/js/app.js"></script>
 </html>
