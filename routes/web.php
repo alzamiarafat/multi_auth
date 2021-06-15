@@ -34,10 +34,6 @@ Route::middleware(['auth','PreventBackHistory'])->group( function (){
         Route::view('/system', 'dashboard.user.home')->name('system');
         Route::post('/logout',[UserController::class,'logout'])->name('logout');
     });
-});
     
-
-
-
-
+});
 

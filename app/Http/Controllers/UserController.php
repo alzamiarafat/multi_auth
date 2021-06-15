@@ -9,6 +9,8 @@ use Validator;
 
 class UserController extends Controller
 {
+    
+
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -53,6 +55,6 @@ class UserController extends Controller
     function logout()
     {
         Auth::guard('web')->logout();
-        return redirect(env('LOCAL_URL'));
+        return redirect(env('APP_URL'));
     }
 }
