@@ -6,8 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>User Dashboard | Home</title>
     <link rel="stylesheet" href="{{ asset('bootstrap.min.css') }}">
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -19,7 +17,7 @@
                  <a href="{{ route('member',['domain' => Auth::guard('web')->user()->role]) }}">Memeber</a>|
                  <a href="{{ route('support',['domain' => Auth::guard('web')->user()->role]) }}">Support</a>
                  @if (Auth::guard('web')->user()->role=='admin')
-                 |<a href="{{ route('system',['domain' => Auth::guard('web')->user()->role]) }}">System</a>
+                    |<a href="{{ route('system',['domain' => Auth::guard('web')->user()->role]) }}">System</a>
                  @endif
                  
                  <hr>
@@ -36,8 +34,8 @@
                                  <td>{{ Auth::guard('web')->user()->name }}</td>
                                  <td>{{ Auth::guard('web')->user()->email }}</td>
                                  <td>
-                                     <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
-                                     <form action="{{ route('logout') }}" method="post" class="d-none" id="logout-form">@csrf</form>
+                                     <a href="{{ route('logout',['domain' => Auth::guard('web')->user()->role]) }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
+                                     <form action="{{ route('logout',['domain' => Auth::guard('web')->user()->role]) }}" method="post" class="d-none" id="logout-form">@csrf</form>
                                  </td>
                              </tr>
                          </tbody>
@@ -47,7 +45,4 @@
     </div>
     
 </body>
-
-
-<script src="/js/app.js"></script>
 </html>

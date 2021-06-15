@@ -13,76 +13,28 @@ use App\Http\Controllers\UserController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Auth::routes();
-
-// Route::middleware(['guest','PreventBackHistory'])->group( function (){
-//     Route::view('/login', 'dashboard.user.login')->name('login');
-//     Route::view('/register', 'dashboard.user.register')->name('register');
-//     Route::post('/create',[UserController::class, 'create'])->name('create');
-//     Route::post('/check',[UserController::class, 'check'])->name('check');
-
-// });
-
-// //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-    
-// Route::middleware(['auth','PreventBackHistory'])->group( function (){
-//     Route::group(['domain' => '{domain}.localhost'], function () {
-//         Route::view('/dashboard', 'dashboard.user.home')->name('home');
-//         Route::view('/member', 'dashboard.user.home')->name('member');
-//         Route::view('/support', 'dashboard.user.home')->name('support');
-//         Route::view('/system', 'dashboard.user.home')->name('system');
-//     });
-//     Route::get('/logout',[UserController::class,'logout'])->name('logout');
-//         //Route::post('/logout',[UserController::class,'logout'])->name('logout');
-    
-// });
-
-// Route::middleware(['guest','PreventBackHistory'])->group( function (){
-//     Route::get('/test', function () {
-//         return "jsaghfdgyg";
-//     });
-
-// });
-
-
-
-
 Route::get('/', function () {
     return view('welcome');
 });
 
 Auth::routes();
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware(['guest','PreventBackHistory'])->group( function (){      
+    Route::view('/login', 'dashboard.user.login')->name('login');
+    Route::view('/register', 'dashboard.user.register')->name('register');
+    Route::post('/create',[UserController::class, 'create'])->name('create');
+    Route::post('/check',[UserController::class, 'check'])->name('check');
+});
 
-
-    Route::middleware(['guest','PreventBackHistory'])->group( function (){
-        
-        Route::view('/login', 'dashboard.user.login')->name('login');
-        Route::view('/register', 'dashboard.user.register')->name('register');
-        Route::post('/create',[UserController::class, 'create'])->name('create');
-        Route::post('/check',[UserController::class, 'check'])->name('check');
-    
-    });
-
-
-    Route::middleware(['auth','PreventBackHistory'])->group( function (){
-        Route::group(['domain' => '{domain}.localhost'], function () {
-            Route::view('/home', 'dashboard.user.home')->name('home');
-            Route::view('/member', 'dashboard.user.home')->name('member');
-            Route::view('/support', 'dashboard.user.home')->name('support');
-            Route::view('/system', 'dashboard.user.home')->name('system');
-            
-        });
+Route::middleware(['auth','PreventBackHistory'])->group( function (){
+    Route::group(['domain' => '{domain}.'.env('LOCAL_URL')], function () {
+        Route::view('/home', 'dashboard.user.home')->name('home');
+        Route::view('/member', 'dashboard.user.home')->name('member');
+        Route::view('/support', 'dashboard.user.home')->name('support');
+        Route::view('/system', 'dashboard.user.home')->name('system');
         Route::post('/logout',[UserController::class,'logout'])->name('logout');
-        
-    
     });
+});
     
 
 
